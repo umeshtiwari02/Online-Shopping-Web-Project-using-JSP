@@ -16,9 +16,13 @@
 			Statement st = conn.createStatement();
 			
 			String q1 = "create table users(name varchar(100), email varchar(100)primary key, mobileNumber bigint, securityQuestion varchar(200), answer varchar(200), password varchar(50), address varchar(500), city varchar(100), state varchar(100), country varchar(100))";
-			System.out.println(q1);
 			
-			st.execute(q1);
+			String q2 = "create table product(id int, name varchar(500), category varchar(200), price int, active varchar(20))";
+			System.out.println(q1);
+			System.out.println(q2);
+			
+			//st.execute(q1);
+			st.execute(q2);
 			System.out.println("Table created");
 			
 		} catch(Exception e) {
