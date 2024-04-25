@@ -1,4 +1,4 @@
-package shopping.porject;
+package shopping.project;
 
 import java.sql.*;
 public class ConnectionProvider {

@@ -1,4 +1,4 @@
-<%@page import="shopping.porject.ConnectionProvider"%>
+<%@page import="shopping.project.ConnectionProvider"%>
 <%@page import="java.sql.*"%>
 
 
