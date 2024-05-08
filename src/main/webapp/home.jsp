@@ -66,11 +66,9 @@ try {
 %>
 
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><i class="fa fa-inr"></i> </i></td>
-            <td><a href="">Add to cart <i class='fas fa-cart-plus'></i></a></td>
+            <td><%=rs.getString(1) %></td>
+            <td><%=rs.getString(2) %></td>
+            <td><%=rs.getString(3) %></td>
             <td><i class="fa fa-inr"></i><%=rs.getString(4) %> </i></td>
             <td><a href="addToCartAction.jsp?id=<%=rs.getString(1) %>">Add to cart <i class='fas fa-cart-plus'></i></a></td>
           </tr>
