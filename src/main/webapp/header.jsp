@@ -23,8 +23,11 @@
             <a href="logout.jsp">Logout <i class='fas fa-share-square'></i></a>
             <div class="search-container">
              
-               
-                <i class="fa fa-search"></i>
+               <form action="searchHome.jsp" method="post">
+               		<input type="text" placeholder="Search" name="search">
+               		<button type="submit" ><i class="fa fa-search"></i></button>
+               		
+               </form>
              
             </div>
           </div>
