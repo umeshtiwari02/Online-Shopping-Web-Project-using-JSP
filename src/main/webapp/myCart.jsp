@@ -89,7 +89,6 @@ try {
       ResultSet rs = st.executeQuery("select * from product inner join cart on product.id=cart.product_id and cart.email='"+email+"' and cart.address is NULL");
       while (rs.next()) 
       {
-    	  out.print(rs.getString(1));
     	%>
           <tr>
 		<%sno = sno + 1; %>
