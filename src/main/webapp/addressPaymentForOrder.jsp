@@ -72,7 +72,7 @@
 </div>
 
 <div class="right-div">
-<h3>Pay online on this btechdays@pay.com</h3>
+<h3>Pay online on this tiwari2002@paytm.com</h3>
 
 <h3 style="color: red">*If you select online Payment then enter you transaction ID here otherwise leave this blank</h3>
 </div>

@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 <title>My Cart</title>
 <style>
 h3
@@ -19,20 +21,55 @@ h3
 <body>
 <div style="color: white; text-align: center; font-size: 30px;">My Cart <i class='fas fa-cart-arrow-down'></i></div>
 
+<%
+String msg = request.getParameter("msg");
+if ("notPossible".equals(msg))
+{
+%>
+
 <h3 class="alert">There is only one Quantity! So click on remove!</h3>
+<%} %>
+
+<%
+if ("inc".equals(msg))
+{
+%>
 
 <h3 class="alert">Quantity  Increased Successfully!</h3>
+<%} %>
 
+<%
+if ("dec".equals(msg))
+{
+%>
 <h3 class="alert">Quantity  Decreased Successfully!</h3>
-
+<%} %>
+<%
+if ("removed".equals(msg))
+{
+%>
 <h3 class="alert">Product Successfully Removed!</h3>
-
+<%} %>
 <table>
 <thead>
+<%
+int total = 0;
+int sno = 0;
+
+try {
+	Connection conn = ConnectionProvider.getCon();
+	Statement st = conn.createStatement();
+	ResultSet rs1 = st.executeQuery("select sum(total) from cart where email='"+email+"' and address is NULL");
+	while (rs1.next()) 
+	{
+		total = rs1.getInt(1);
+
+
+%>
 
           <tr>
-            <th scope="col" style="background-color: yellow;">Total: <i class="fa fa-inr"></i> </th>
-            <th scope="col"><a href="">Proceed to order</a></th>
+            <th scope="col" style="background-color: yellow;">Total: <i class="fa fa-inr"></i> <%out.println(total); %></th>
+            <%if(total > 0) %> <th scope="col"><a href="addressPaymentForOrder.jsp">Proceed to order</a></th>
           </tr>
         </thead>
         <thead>
@@ -48,16 +85,30 @@ h3
         </thead>
         <tbody>
       
+      <%
+      ResultSet rs = st.executeQuery("select * from product inner join cart on product.id=cart.product_id and cart.email='"+email+"' and cart.address is NULL");
+      while (rs.next()) 
+      {
+    	  out.print(rs.getString(1));
+    	%>
           <tr>
-
-           <td></td>
-            <td></td>
-            <td></td>
-            <td><i class="fa fa-inr"></i> </td>
-            <td><a href=""><i class='fas fa-plus-circle'></i></a>  <a href=""><i class='fas fa-minus-circle'></i></a></td>
-            <td><i class="fa fa-inr"></i> </td>
-            <td><a href="">Remove <i class='fas fa-trash-alt'></i></a></td>
+		<%sno = sno + 1; %>
+           <td><%out.println(sno); %></td>
+            <td><%=rs.getString(2) %></td>
+            <td><%=rs.getString(3) %></td>
+            <td><i class="fa fa-inr"></i><%=rs.getString(4) %> </td>
+            <td><a href="incDecQuantityAction.jsp?id=<%=rs.getString(1)%>&quantity=inc"><i class='fas fa-plus-circle'></i></a> <%=rs.getString(8) %> <a href="incDecQuantityAction.jsp?id=<%=rs.getString(1)%>&quantity=dec"><i class='fas fa-minus-circle'></i></a></td>
+            <td><i class="fa fa-inr"></i> <%=rs.getString(10) %></td>
+            <td><a href="removeFromCart.jsp?id=<%rs.getString(1);%>">Remove <i class='fas fa-trash-alt'></i></a></td>
           </tr>
+          <%
+      }
+	}
+} catch(Exception e) 
+{
+	
+}
+          %>
 
         </tbody>
       </table>
