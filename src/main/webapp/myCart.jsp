@@ -56,6 +56,7 @@ if ("removed".equals(msg))
 int total = 0;
 int sno = 0;
 
+
 try {
 	Connection conn = ConnectionProvider.getCon();
 	Statement st = conn.createStatement();
@@ -90,7 +91,7 @@ try {
       while (rs.next()) 
       {
     	%>
-          <tr>
+    	<tr>
 		<%sno = sno + 1; %>
            <td><%out.println(sno); %></td>
             <td><%=rs.getString(2) %></td>
@@ -103,9 +104,9 @@ try {
           <%
       }
 	}
-} catch(Exception e) 
+} 
+catch(Exception e) 
 {
-	
 }
           %>
 
