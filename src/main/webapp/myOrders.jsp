@@ -1,3 +1,9 @@
+<%@page import="shopping.project.ConnectionProvider"%>
+<%@page import="java.sql.*"%>
+<%@include file="header.jsp" %>
+<%@include file="footer.jsp" %>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,19 +29,38 @@
           </tr>
         </thead>
         <tbody>
+        <%
+        int sno = 0;
+        try 
+        {
+        	Connection con = ConnectionProvider.getCon();
+        	Statement st = con.createStatement();
+        	ResultSet rs = st.executeQuery("select * from cart inner join product where cart.product_id=product.id and cart.email='"+email+"' and cart.orderDate is not NULL");
+        	while (rs.next())
+        	{
+        		sno=sno+1;
+        %>
 
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><i class="fa fa-inr"></i> </td>
-            <td></td>
-            <td><i class="fa fa-inr"></i> </td>
-             <td></td>
-              <td></td>
-               <td></td>
-               <td></td>
+            <td><%out.println(sno); %></td>
+            <td><%=rs.getString(17)%></td>
+            <td><%=rs.getString(18)%></td>
+            <td><i class="fa fa-inr"></i> <%=rs.getString(19)%></td>
+            <td><%=rs.getString(3)%></td>
+            <td><i class="fa fa-inr"></i> <%=rs.getString(5)%></td>
+             <td><%=rs.getString(11)%></td>
+              <td><%=rs.getString(12)%></td>
+               <td><%=rs.getString(13)%></td>
+               <td><%=rs.getString(15)%></td>
             </tr>
+            <%
+        	}
+        }
+        catch(Exception e)
+        {
+        	System.out.println(e);
+        }
+            %>
          
         </tbody>
       </table>
