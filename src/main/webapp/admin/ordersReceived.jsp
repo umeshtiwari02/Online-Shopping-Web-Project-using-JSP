@@ -8,7 +8,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="../css/ordersReceived-style.css">
-<title>Home</title>
+<title>Orders Received</title>
 <style>
 .th-style
 { width: 25%;}
