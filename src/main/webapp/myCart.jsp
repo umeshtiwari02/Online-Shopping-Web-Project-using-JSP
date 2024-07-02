@@ -100,7 +100,7 @@ try {
             <td><i class="fa fa-inr"></i><%=rs.getString(4) %> </td>
             <td><a href="incDecQuantityAction.jsp?id=<%=rs.getString(1)%>&quantity=inc"><i class='fas fa-plus-circle'></i></a> <%=rs.getString(8) %> <a href="incDecQuantityAction.jsp?id=<%=rs.getString(1)%>&quantity=dec"><i class='fas fa-minus-circle'></i></a></td>
             <td><i class="fa fa-inr"></i> <%=rs.getString(10) %></td>
-            <td><a href="removeFromCart.jsp?id=<%rs.getString(1);%>">Remove <i class='fas fa-trash-alt'></i></a></td>
+            <td><a href="removeFromCart.jsp?id=<%=rs.getString(1)%>">Remove <i class='fas fa-trash-alt'></i></a></td>
           </tr>
           <%
       }
@@ -108,6 +108,7 @@ try {
 } 
 catch(Exception e) 
 {
+	System.out.println(e);
 }
           %>
 
